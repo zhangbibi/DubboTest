@@ -11,8 +11,15 @@
     <!-- 使用zk注册中心暴露发现服务地址 -->
     <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
 
-
     <!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
     <dubbo:reference id="printService" interface="com.test.dubbo.api.PrintService" />
+
+    <dubbo:reference interface="com.test.dubbo.api.ProviderService">
+        <dubbo:method name="provider"></dubbo:method>
+        <dubbo:method name="provider2"></dubbo:method>
+    </dubbo:reference>
+    <!--<dubbo:consumer >-->
+        <!--<dubbo:parameter key="" value=""-->
+    <!--</dubbo:consumer>-->
 </beans>
 

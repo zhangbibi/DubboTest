@@ -6,21 +6,26 @@
 	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
 
-    <!-- 提供方应用信息，用于计算依赖关系 -->
-    <dubbo:application name="demo-provider" owner="programmer" organization="dubbo"/>
+    <!--&lt;!&ndash; 提供方应用信息，用于计算依赖关系 &ndash;&gt;-->
+    <!--<dubbo:application name="demo-provider" owner="programmer" organization="dubbo"/>-->
 
-    <!-- 使用zk注册中心暴露服务地址 -->
-    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
+    <!--&lt;!&ndash; 使用zk注册中心暴露服务地址 &ndash;&gt;-->
+    <!--<dubbo:registry address="zookeeper://127.0.0.1:2181"/>-->
 
-    <!--uncomment this if you want to test dubbo's monitor-->
-    <!--<dubbo:monitor protocol="registry"/>-->
+    <!--&lt;!&ndash;uncomment this if you want to test dubbo's monitor&ndash;&gt;-->
+    <!--&lt;!&ndash;<dubbo:monitor protocol="registry"/>&ndash;&gt;-->
 
-    <!-- 用dubbo协议在20880端口暴露服务 -->
-    <dubbo:protocol name="dubbo" port="20880" />
+    <!--&lt;!&ndash; 用dubbo协议在20880端口暴露服务 &ndash;&gt;-->
+    <!--<dubbo:protocol name="dubbo" port="20880" />-->
 
-    <!-- 声明需要暴露的服务接口 -->
-    <dubbo:service interface="com.test.dubbo.api.PrintService" ref="printService"  protocol="dubbo"/>
 
-    <!-- 和本地bean一样实现服务 -->
+    <!-- 使用provider提供服务 -->
+    <dubbo:provider>
+        <dubbo:service interface="com.test.dubbo.api.ProviderService" ref="providerService"></dubbo:service>
+        <dubbo:service interface="com.test.dubbo.api.PrintService" ref="printService"  protocol="dubbo"/>
+    </dubbo:provider>
+    <bean id="providerService" class="com.test.dubbo.provider.service.ProviderServiceImpl"></bean>
     <bean id="printService" class="com.test.dubbo.provider.service.PrintServiceImpl" />
+
+
 </beans>
