@@ -1,5 +1,6 @@
 package com.test.dubbo.provider.service;
 
+import com.alibaba.dubbo.rpc.RpcContext;
 import com.test.dubbo.api.PrintService;
 
 /**
@@ -8,7 +9,14 @@ import com.test.dubbo.api.PrintService;
 public class PrintServiceImpl implements PrintService {
 
     public String print() {
-        System.out.println("Hello dubbo..");
+
+        boolean isProviderSide = RpcContext.getContext().isProviderSide();
+
+        if (isProviderSide){
+            System.out.println("我是服务..");
+        }
+
         return "Hello ....";
+
     }
 }

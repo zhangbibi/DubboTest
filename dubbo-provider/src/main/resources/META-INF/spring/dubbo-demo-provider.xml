@@ -28,4 +28,12 @@
     <bean id="printService" class="com.test.dubbo.provider.service.PrintServiceImpl" />
 
 
+    <bean id="callbackService" class="com.test.dubbo.provider.service.CallbackServiceImpl" />
+    <dubbo:service interface="com.test.dubbo.api.CallbackService" ref="callbackService" connections="1" callbacks="1000">
+        <dubbo:method name="addListener">
+            <dubbo:argument index="1" callback="true" />
+            <!--也可以通过指定类型的方式-->
+            <!--<dubbo:argument type="com.demo.CallbackListener" callback="true" />-->
+        </dubbo:method>
+    </dubbo:service>
 </beans>

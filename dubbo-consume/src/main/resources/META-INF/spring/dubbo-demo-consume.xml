@@ -21,5 +21,9 @@
     <!--<dubbo:consumer >-->
         <!--<dubbo:parameter key="" value=""-->
     <!--</dubbo:consumer>-->
+
+    <dubbo:reference id="callbackService" interface="com.test.dubbo.api.CallbackService" />
+
+
 </beans>
 
